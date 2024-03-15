@@ -3,8 +3,6 @@ import requests
 from django.core.paginator import Paginator
 from datetime import datetime
 
-# from .models import Competition
-
 
 def home(request):
     try:
@@ -93,8 +91,7 @@ def team_list(request, competition_id):
                           'team_name': team_name,
                           'sigla': sigla,
                           'area': area,
-                          'founded': founded
-                          })
+                          'founded': founded})
 
         teams_paginator = Paginator(teams, 30)
         page_num = request.GET.get('page')

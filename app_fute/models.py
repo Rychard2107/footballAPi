@@ -12,6 +12,9 @@ class Competition(models.Model):
 class Team(models.Model):
     name = models.CharField(max_length=50)
     team_id = models.IntegerField(unique=True)
+    tla = models.CharField(max_length=3)
+    area = models.CharField(max_length=30)
+    founded = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.name
