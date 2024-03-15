@@ -6,7 +6,9 @@
         <div class="grid-conteiner">
             {% for competition in competitions %}
                 <div class='card'>
-                    <p>Nome da Competição: <a href="{% url 'match_list' competition_id=competition.id %}">{{ competition.name }}</a></p>
+                    <h3>{{ competition.name }}</h3> <br>
+                    <a href="{% url 'team_list' competition_id=competition.id %}">Times</a> <br>
+                    <a href="{% url 'match_list' competition_id=competition.id %}">Partidas</a>
                     
                 </div>
             {% endfor %}

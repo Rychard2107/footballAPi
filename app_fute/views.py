@@ -48,7 +48,7 @@ def match_list(request, competition_id):
         for match in data['matches']:
             home_team_name = match['homeTeam']['name']
             away_team_name = match['awayTeam']['name']
-            match_date = datetime.strptime(match['utcDate'], '%Y-%m-%dT%H:%M:%SZ').strftime('%d/%m/%Y')
+            match_date = datetime.strptime(match['utcDate'], '%Y-%m-%dT%H:%M:%SZ').strftime('%d/%m/%Y') # noqa
             match_score_home = match['score']['fullTime']['home']
             match_score_away = match['score']['fullTime']['away']
 
@@ -56,12 +56,45 @@ def match_list(request, competition_id):
                             'away_team_name': away_team_name,
                             'match_date': match_date,
                             'match_score_home': match_score_home,
-                            'match_score_away': match_score_away}) 
+                            'match_score_away': match_score_away})
 
         matches_paginator = Paginator(matches, 30)
         page_num = request.GET.get('page')
         page = matches_paginator.get_page(page_num)
         return render(request, 'app_fute/pages/match_list.html', {'competition_id': competition_id , 'page': page}) # noqa
+
+    except Exception as e:
+        # Erros de partida
+        error_message = f"Erro ao listar as partidas: {str(e)}"
+        return render(request, 'app_fute/pages/error.html', {'error_message': error_message}) # noqa
+
+
+def team_list(request, competition_id):
+    try:
+        url = f'https://api.football-data.org/v4/competitions/{competition_id}/teams' # noqa
+        headers = {'X-Auth-Token': '02dbfc8a7b1f4f6f9bd8817070cce254'}
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()
+        data = response.json()
+
+        teams = []
+
+        for team in data['teams']:
+            team_name = team['name']
+            sigla = team['tla']
+            area = team['area']['name']
+            founded = team['founded']
+
+            teams.append({'team_name': team_name,
+                          'sigla': sigla,
+                          'area': area,
+                          'founded': founded
+                          })
+
+        teams_paginator = Paginator(teams, 30)
+        page_num = request.GET.get('page')
+        page = teams_paginator.get_page(page_num)
+        return render(request, 'app_fute/pages/team_list.html', {'competition_id': competition_id , 'page': page}) # noqa
 
     except Exception as e:
         # Erros de partida

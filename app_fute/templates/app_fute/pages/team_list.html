@@ -1,0 +1,28 @@
+{% include "app_fute/partials/head.html" %}
+<body>
+    {% include "app_fute/partials/header.html" %}
+    <div class="main-content-conteiner">
+        <h2>Times</h2>
+        <div class="grid-conteiner">
+            {% for team in page.object_list %}
+                <div class='card'>
+                    <p>Nome do time: {{ team.team_name }}</p>
+                    <p>Sigla: {{ team.sigla }}</p>
+                    <p>País: {{ team.area }}</p>
+                    <p>Ano de fundação: {{ team.founded }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="link-anima pagination">
+            {% if page.has_previous %}
+                <a href="{% url 'team_list' competition_id=competition_id %}?page={{page.previous_page_number}}">Anterior</a>
+            {% endif %}
+            {% if page.has_next %}
+                <a href="{% url 'team_list' competition_id=competition_id %}?page={{page.next_page_number}}">Próximo</a>
+            {% endif %}
+        </div>
+        
+    </div>
+    {% include "app_fute/partials/footer.html" %}
+</body>
+</html>
