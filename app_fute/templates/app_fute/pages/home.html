@@ -2,7 +2,10 @@
 <body>
     {% include "app_fute/partials/header.html" %}
     <div class="main-content-conteiner">
-            
+        {% for competition in competitions %}
+            <p>Nome da Competição: {{ competition.name }}</p>
+            <p>ID da Competição: {{ competition.id }}</p>
+        {% endfor %}
     </div>
     {% include "app_fute/partials/footer.html" %}
 </body>
