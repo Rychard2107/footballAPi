@@ -1,11 +1,16 @@
 {% include "app_fute/partials/head.html" %}
 <body>
     {% include "app_fute/partials/header.html" %}
-    <div class="main-content-conteiner">
-        {% for competition in competitions %}
-            <p>Nome da Competição: {{ competition.name }}</p>
-            <p>ID da Competição: {{ competition.id }}</p>
-        {% endfor %}
+    <div class="main-content-conteiner link-anima">
+        <h2>Campeonatos</h2>
+        <div class="grid-conteiner">
+            {% for competition in competitions %}
+                <div class='card'>
+                    <p>Nome da Competição: <a href="{% url 'match_list' competition_id=competition.id %}">{{ competition.name }}</a></p>
+                    
+                </div>
+            {% endfor %}
+        </div>
     </div>
     {% include "app_fute/partials/footer.html" %}
 </body>
