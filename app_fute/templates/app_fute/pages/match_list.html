@@ -5,9 +5,9 @@
         <h2>Partidas</h2>
         <div class="grid-conteiner">
             {% for match in page.object_list %}
-                <div class='card'>
-                    <p> Time da casa:{{ match.home_team_name }}</p>
-                    <p> Time de fora:{{ match.away_team_name }}</p>
+                <div class='card link-anima'>
+                    <p>Time da casa: <a href="{% url 'team' match.home_team_id %}">{{ match.home_team_name }}</a></p>
+                    <p>Time de fora: <a href="{% url 'team' match.away_team_id %}">{{ match.away_team_name }}</a></p>
                     <p><strong>Data:</strong> {{ match.match_date }}</p>
                     <p><strong>Placar:</strong> {{ match.match_score_home }} - {{ match.match_score_away }}</p>
                 </div>

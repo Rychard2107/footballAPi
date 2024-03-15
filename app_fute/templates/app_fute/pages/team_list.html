@@ -5,8 +5,8 @@
         <h2>Times</h2>
         <div class="grid-conteiner">
             {% for team in page.object_list %}
-                <div class='card'>
-                    <p>Nome do time: {{ team.team_name }}</p>
+                <div class='card link-anima'>
+                    <p>Nome do time: <a href="{% url 'team' team.team_id%}">{{ team.team_name }}</a></p>
                     <p>Sigla: {{ team.sigla }}</p>
                     <p>País: {{ team.area }}</p>
                     <p>Ano de fundação: {{ team.founded }}</p>
