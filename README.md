@@ -2,9 +2,9 @@
 Este é um projeto de exemplo que utiliza Django para criar uma aplicação web para gerenciamento de competições esportivas, e consome a api de link https://www.football-data.org/, para catalogar campeonatos, times e partidas.
 
 ## Requisitos
-Python 3
-Pip (geralmente instalado junto com o Python)
-Virtualenv (opcional, mas recomendado para isolamento de ambiente)
+* Python 3
+* Pip (geralmente instalado junto com o Python)
+* Virtualenv (opcional, mas recomendado para isolamento de ambiente)
 
 ## Instalação
 1. Clone o repositório:
