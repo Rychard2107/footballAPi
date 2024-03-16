@@ -70,7 +70,7 @@ def match_list(request, competition_id):
 
     except Exception as e:
         # Erros de partida
-        error_message = f"Erro ao listar as partidas: {str(e)}"
+        error_message = f"A api não contém as partidas desse campeonato, erro: {str(e)}" # noqa
         return render(request, 'app_fute/pages/error.html', {'error_message': error_message}) # noqa
 
 
@@ -129,7 +129,7 @@ def team(request, team_id):
 
     except Exception as e:
         # Erros de time
-        error_message = f"Erro ao requisitar o time: {str(e)}"
+        error_message = f"A api não contém a formação desse time, erro: {str(e)}" # noqa
         return render(request, 'app_fute/pages/error.html', {'error_message': error_message}) # noqa
 
 
