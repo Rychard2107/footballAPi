@@ -1,0 +1,16 @@
+{% include "app_fute/partials/head.html" %}
+<body>
+    {% include "app_fute/partials/header.html" %}
+    <div class="main-content-conteiner link-anima">
+        <div class='card'>
+            <h2>Criar Time</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+    {% include "app_fute/partials/footer.html" %}
+</body>
+</html>

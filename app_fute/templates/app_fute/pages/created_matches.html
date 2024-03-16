@@ -1,0 +1,19 @@
+{% include "app_fute/partials/head.html" %}
+<body>
+    {% include "app_fute/partials/header.html" %}
+    <div class="main-content-conteiner">
+        <h2>Partidas criadas</h2>
+        <div class="grid-conteiner">
+            {% for match in matches %}
+                <div class='card'>
+                    <p>Time da casa: {{ match.home_team }}</p>
+                    <p>Time de fora: {{ match.away_team }}</p>
+                    <p><strong>Data:</strong> {{ match.match_date }}</p>
+                    <p><strong>Placar:</strong> {{ match.home_team_score }} - {{ match.away_team_score }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% include "app_fute/partials/footer.html" %}
+</body>
+</html>

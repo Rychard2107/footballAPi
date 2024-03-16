@@ -5,17 +5,16 @@ from .models import Competition, Team, Match
 class CompetitionForm(forms.ModelForm):
     class Meta:
         model = Competition
-        fields = ['name', 'competition_id']
+        fields = ['name']
 
 
 class TeamForm(forms.ModelForm):
     class Meta:
         model = Team
+        exclude = ['founded']
         fields = ['name',
-                  'team_id',
                   'tla',
-                  'area',
-                  'founded']
+                  'area',]
 
 
 class MatchForm(forms.ModelForm):

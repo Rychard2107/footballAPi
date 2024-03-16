@@ -2,6 +2,9 @@ from django.shortcuts import render
 import requests
 from django.core.paginator import Paginator
 from datetime import datetime
+from django.views.generic.edit import CreateView
+from .models import Competition, Team, Match
+from .forms import CompetitionForm, TeamForm, MatchForm
 
 
 def home(request):
@@ -128,3 +131,29 @@ def team(request, team_id):
         # Erros de time
         error_message = f"Erro ao requisitar o time: {str(e)}"
         return render(request, 'app_fute/pages/error.html', {'error_message': error_message}) # noqa
+
+
+class CompetitionCreateView(CreateView):
+    model = Competition
+    form_class = CompetitionForm
+    template_name = 'app_fute/pages/competition_form.html'
+    success_url = '/'
+
+
+class TeamCreateView(CreateView):
+    model = Team
+    form_class = TeamForm
+    template_name = 'app_fute/pages/team_form.html'
+    success_url = '/'
+
+
+class MatchCreateView(CreateView):
+    model = Match
+    form_class = MatchForm
+    template_name = 'app_fute/pages/match_form.html'
+    success_url = '/'
+
+
+def view_created_matches(request):
+    matches = Match.objects.all()  # Obtém todas as partidas criadas
+    return render(request, 'app_fute/pages/created_matches.html', {'matches': matches}) # noqa
